@@ -1,0 +1,51 @@
+{
+  "last_updated": "2026-02-23T08:47:00Z",
+  "portfolio": {
+    "mtd_binds": 1035,
+    "av_per_day": 45,
+    "eom_projection": 1291,
+    "pct_of_goal": 134,
+    "blended_cac": 31.48,
+    "cac_target": 40,
+    "mtd_premiums": 892679,
+    "eom_premiums": 1082240
+  },
+  "products": {
+    "renters": {
+      "mtd_binds": 552,
+      "eom_projection": 703,
+      "goal": 481,
+      "cac": 22.14,
+      "cac_target": 35,
+      "ltv": 315,
+      "yoy_growth": 91.0
+    },
+    "owners": {
+      "mtd_binds": 37,
+      "eom_projection": 45,
+      "goal": 39,
+      "cac": 299.97,
+      "cac_target": 350,
+      "ltv": 1500,
+      "yoy_growth": 136.8
+    },
+    "drones": {
+      "mtd_binds": 285,
+      "eom_projection": 347,
+      "goal": 251,
+      "cac": 22.33,
+      "cac_target": 35,
+      "ltv": 857,
+      "yoy_growth": 52.2
+    },
+    "motorcycles": {
+      "mtd_binds": 161,
+      "eom_projection": 196,
+      "goal": 191,
+      "cac": 18.01,
+      "cac_target": 50,
+      "ltv": 178,
+      "yoy_growth": -12.9
+    }
+  }
+}

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voom Marketing Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #004080;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login-form input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #004080;
+            box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.1);
+        }
+
+        .login-form button {
+            padding: 12px;
+            background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .login-form button:hover {
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .dashboard-container {
+            display: none;
+            width: 100%;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-content {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            color: #004080;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #004080;
+        }
+
+        .card h2 {
+            color: #004080;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .metric-value {
+            color: #004080;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .metric-unit {
+            color: #999;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .portfolio-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+            color: white;
+        }
+
+        .portfolio-card h2 {
+            color: white;
+        }
+
+        .portfolio-card .metric-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .portfolio-card .metric-value {
+            color: #ffffff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d084 0%, #00c853 100%);
+            transition: width 0.3s ease;
+        }
+
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #ffb300 0%, #ff9800 100%);
+        }
+
+        .progress-fill.danger {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ff5252 100%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge.positive {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .badge.negative {
+            background: #ffcccc;
+            color: #c62828;
+        }
+
+        .last-update {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-card {
+                grid-column: span 1;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-header">
+            <h1>📊 Voom Dashboard</h1>
+            <p>Marketing Metrics</p>
+        </div>
+        <form class="login-form" onsubmit="handleLogin(event)">
+            <input 
+                type="password" 
+                id="passwordInput" 
+                placeholder="Enter password" 
+                autofocus
+            >
+            <button type="submit">Access Dashboard</button>
+            <div class="error" id="errorMsg">Incorrect password</div>
+        </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardContainer" class="dashboard-container">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>📊 Voom Marketing Dashboard</h1>
+                <p>Real-time marketing metrics & performance tracking</p>
+            </div>
+
+            <div class="dashboard-grid" id="dashboardGrid">
+                <!-- Dashboard content loaded here -->
+            </div>
+
+            <div class="last-update" id="lastUpdate"></div>
+        </div>
+    </div>
+
+    <script>
+        const CORRECT_PASSWORD = 'skywatch26';
+        const DATA_URL = 'https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/dashboard_data.json';
+
+        // Password protection
+        function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password === CORRECT_PASSWORD) {
+                localStorage.setItem('dashboardAuth', 'true');
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                loadDashboard();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('dashboardAuth');
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('dashboardContainer').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        // Check if already authenticated
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('dashboardAuth') === 'true') {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                loadDashboard();
+            }
+        });
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch(DATA_URL);
+                const data = await response.json();
+                renderDashboard(data);
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('dashboardGrid').innerHTML = '<p style="color: red;">Unable to load data</p>';
+            }
+        }
+
+        function renderDashboard(data) {
+            const grid = document.getElementById('dashboardGrid');
+            let html = '';
+
+            // Portfolio Overview
+            html += `
+                <div class="card portfolio-card">
+                    <h2>📈 Portfolio Overview</h2>
+                    <div class="metric">
+                        <span class="metric-label">MTD Binds</span>
+                        <span class="metric-value">${data.portfolio.mtd_binds}<span class="metric-unit">binds</span></span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">EOM Projection</span>
+                        <span class="metric-value">${data.portfolio.eom_projection}<span class="metric-unit">binds</span></span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Goal Achievement</span>
+                        <span class="metric-value">${data.portfolio.goal_percentage}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill ${data.portfolio.goal_percentage >= 100 ? '' : (data.portfolio.goal_percentage >= 75 ? 'warning' : 'danger')}" 
+                             style="width: ${Math.min(data.portfolio.goal_percentage, 100)}%"></div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Blended CAC</span>
+                        <span class="metric-value">$${data.portfolio.blended_cac}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">MTD Premiums</span>
+                        <span class="metric-value">$${data.portfolio.mtd_premiums}</span>
+                    </div>
+                </div>
+            `;
+
+            // Products
+            Object.keys(data.products).forEach(product => {
+                const p = data.products[product];
+                const yoyBadge = parseFloat(p.yoy_growth) >= 0 ? 'positive' : 'negative';
+                html += `
+                    <div class="card">
+                        <h2>${product}
+                            <span class="badge ${yoyBadge}">${p.yoy_growth}%</span>
+                        </h2>
+                        <div class="metric">
+                            <span class="metric-label">MTD Binds</span>
+                            <span class="metric-value">${p.mtd_binds}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">EOM Projection</span>
+                            <span class="metric-value">${p.eom_projection}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Goal</span>
+                            <span class="metric-value">${p.goal}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">% of Goal</span>
+                            <span class="metric-value">${p.goal_percentage}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${p.goal_percentage >= 100 ? '' : (p.goal_percentage >= 75 ? 'warning' : 'danger')}" 
+                                 style="width: ${Math.min(p.goal_percentage, 100)}%"></div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CAC</span>
+                            <span class="metric-value">$${p.cac}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CAC Target</span>
+                            <span class="metric-value">$${p.cac_target}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CAC Variance</span>
+                            <span class="metric-value">${p.cac_variance}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+
+            // Update last refresh time
+            const now = new Date().toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Asia/Jerusalem'
+            });
+            document.getElementById('lastUpdate').textContent = `Last updated: ${now} (UTC+2)`;
+        }
+
+        // Refresh data every 30 seconds
+        setInterval(() => {
+            if (localStorage.getItem('dashboardAuth') === 'true') {
+                loadDashboard();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
