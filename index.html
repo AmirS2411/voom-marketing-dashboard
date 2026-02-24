@@ -671,7 +671,7 @@
                 const cacTableBody = document.getElementById('cacTableBody');
                 cacTableBody.innerHTML = '';
                 
-                data.products.forEach((p) => {
+                Object.values(data.products).forEach((p) => {
                     const row = `
                         <tr>
                             <td class="product-name-cell">${p.name}</td>
