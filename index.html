@@ -506,7 +506,6 @@
                 const productsContainer = document.getElementById('productsContainer');
                 productsContainer.innerHTML = '';
                 
-                const productEmojis = ['🛫', '🚁', '✈️', '🏍️'];
                 const productClasses = ['renters', 'drones', 'owners', 'motorcycles'];
 
                 data.products.forEach((p, index) => {
@@ -518,7 +517,7 @@
                     const html = `
                         <div class="product-card ${productClasses[index]}">
                             <div class="product-header">
-                                <div class="product-name">${productEmojis[index]} ${p.name}</div>
+                                <div class="product-name">${p.name}</div>
                                 <div class="yoy-badge ${yoyClass}">YoY: ${yoySign}${p.yoy_growth}%</div>
                             </div>
                             <div class="product-metrics">
@@ -571,7 +570,7 @@
                     
                     const html = `
                         <div class="efficiency-card">
-                            <div class="product-name">${productEmojis[index]} ${p.name}</div>
+                            <div class="product-name">${p.name}</div>
                             <div class="efficiency-ratio">${p.cac_ltv_ratio}</div>
                             <div style="font-size: 13px; color: #6c757d;">CAC to LTV</div>
                             <div class="efficiency-status ${statusClass}">${p.efficiency_status}</div>
