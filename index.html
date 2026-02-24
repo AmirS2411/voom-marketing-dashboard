@@ -318,6 +318,74 @@
         .efficiency-status {
             font-size: 14px;
             font-weight: 600;
+        }
+
+        /* CAC Table Section */
+        .cac-table-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #004080;
+        }
+
+        .cac-table-section h2 {
+            font-size: 20px;
+            color: #004080;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .cac-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .cac-table thead {
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .cac-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            color: #004080;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cac-table td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .cac-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .cac-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cac-table .product-name-cell {
+            font-weight: 600;
+            color: #004080;
+        }
+
+        .cac-table .currency {
+            color: #28a745;
+            font-weight: 600;
+        }
             padding: 10px 0;
             text-align: center;
             margin-top: 12px;
@@ -426,6 +494,26 @@
             <div class="products-section">
                 <h2>Product Performance</h2>
                 <div class="products-grid" id="productsContainer"></div>
+            </div>
+
+            <!-- Cost of Acquisition Table -->
+            <div class="cac-table-section">
+                <h2>Cost of Acquisition</h2>
+                <div class="table-wrapper">
+                    <table class="cac-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>MTD Spend</th>
+                                <th>MTD CAC</th>
+                                <th>EOM Spend (Projection)</th>
+                                <th>EOM CAC (Projection)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cacTableBody">
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- CAC/LTV Efficiency -->
@@ -577,6 +665,23 @@
                         </div>
                     `;
                     efficiencyContainer.innerHTML += html;
+                });
+
+                // CAC Table
+                const cacTableBody = document.getElementById('cacTableBody');
+                cacTableBody.innerHTML = '';
+                
+                data.products.forEach((p) => {
+                    const row = `
+                        <tr>
+                            <td class="product-name-cell">${p.name}</td>
+                            <td class="currency">$${(p.mtd_spend || 0).toLocaleString()}</td>
+                            <td>$${(p.cac || 0).toFixed(2)}</td>
+                            <td class="currency">$${(p.eom_spend || 0).toLocaleString()}</td>
+                            <td>$${(p.cac || 0).toFixed(2)}</td>
+                        </tr>
+                    `;
+                    cacTableBody.innerHTML += row;
                 });
 
             } catch (error) {
