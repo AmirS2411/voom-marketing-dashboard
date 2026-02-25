@@ -380,6 +380,22 @@
     </style>
 </head>
 <body>
+    <!-- Login Screen -->
+    <div id="loginScreen" style="display:flex; align-items:center; justify-content:center; min-height:100vh;">
+        <div style="background:white; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.15); padding:40px; width:100%; max-width:380px; text-align:center;">
+            <h2 style="color:#003366; margin-bottom:8px; font-size:22px;">Marketing Performance Dashboard</h2>
+            <p style="color:#6c757d; font-size:13px; margin-bottom:24px;">Enter your password to access</p>
+            <input id="passwordInput" type="password" placeholder="Password" 
+                style="width:100%; padding:12px 16px; border:1px solid #dee2e6; border-radius:6px; font-size:15px; margin-bottom:12px; box-sizing:border-box;"
+                onkeydown="if(event.key==='Enter') checkPassword()">
+            <button onclick="checkPassword()" 
+                style="width:100%; padding:12px; background:#003366; color:white; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:600;">
+                Login
+            </button>
+            <p id="loginError" style="color:#dc3545; font-size:13px; margin-top:10px; display:none;">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
     <div class="container">
         <div id="content" style="display: none;">
             <div class="header">
@@ -462,18 +478,33 @@
         // Password check on page load
         window.addEventListener('DOMContentLoaded', function() {
             const auth = sessionStorage.getItem('dashboardAuth');
-            if (!auth) {
-                const password = prompt('Enter dashboard password:');
-                if (password === 'skywatch26') {
-                    sessionStorage.setItem('dashboardAuth', 'true');
-                    loadDashboard();
-                } else {
-                    document.getElementById('loadingMessage').innerHTML = '<p style="color: #ef4444;">Access Denied</p>';
-                }
+            if (auth === 'true') {
+                showDashboard();
             } else {
-                loadDashboard();
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('loadingMessage').style.display = 'none';
+                setTimeout(() => document.getElementById('passwordInput').focus(), 100);
             }
         });
+
+        function checkPassword() {
+            const pwd = document.getElementById('passwordInput').value;
+            if (pwd === 'skywatch26') {
+                sessionStorage.setItem('dashboardAuth', 'true');
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('loadingMessage').style.display = 'block';
+                showDashboard();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            loadDashboard();
+        }
 
         function logout() {
             sessionStorage.removeItem('dashboardAuth');
