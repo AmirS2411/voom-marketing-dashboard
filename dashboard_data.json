@@ -7,54 +7,81 @@
     "mtd_binds": 1146,
     "av_per_day": 46,
     "eom_projection": 1311,
+    "goal": 962,
     "pct_of_goal": 136,
     "blended_cac": 31.23,
     "cac_target": 40,
     "mtd_premiums": 990626,
     "eom_premiums": 1109501,
     "yoy_growth": 56.1,
-    "cac_ltv_ratio": 6.39
+    "cac_ltv_ratio": 6.39,
+    "mtd_spend": 35754,
+    "eom_spend": 41288
   },
   "products": {
     "renters": {
+      "name": "Renters",
       "mtd_binds": 608,
+      "av_per_day": 24,
       "eom_projection": 709,
       "goal": 481,
+      "pct_of_goal": 147,
+      "mtd_spend": 13356,
+      "eom_spend": 15557,
       "cac": 21.96,
       "cac_target": 35,
+      "cac_variance": -37,
       "ltv": 315,
-      "yoy_growth": 92.7,
-      "pct_of_goal": 147
-    },
-    "owners": {
-      "mtd_binds": 44,
-      "eom_projection": 49,
-      "goal": 39,
-      "cac": 278.75,
-      "cac_target": 350,
-      "ltv": 1500,
-      "yoy_growth": 157.9,
-      "pct_of_goal": 126
+      "efficiency_status": "Above 1/3",
+      "yoy_growth": 92.7
     },
     "drones": {
+      "name": "Drones",
       "mtd_binds": 316,
+      "av_per_day": 13,
       "eom_projection": 354,
       "goal": 251,
+      "pct_of_goal": 141,
+      "mtd_spend": 7018,
+      "eom_spend": 8156,
       "cac": 22.2,
       "cac_target": 35,
+      "cac_variance": -37,
       "ltv": 857,
-      "yoy_growth": 55.3,
-      "pct_of_goal": 141
+      "efficiency_status": "Above 1/3",
+      "yoy_growth": 55.3
+    },
+    "owners": {
+      "name": "Owners",
+      "mtd_binds": 44,
+      "av_per_day": 2,
+      "eom_projection": 49,
+      "goal": 39,
+      "pct_of_goal": 126,
+      "mtd_spend": 12265,
+      "eom_spend": 14307,
+      "cac": 278.75,
+      "cac_target": 350,
+      "cac_variance": -20,
+      "ltv": 1500,
+      "efficiency_status": "Above 1/3",
+      "yoy_growth": 157.9
     },
     "motorcycles": {
+      "name": "Motorcycles",
       "mtd_binds": 178,
+      "av_per_day": 7,
       "eom_projection": 199,
       "goal": 191,
+      "pct_of_goal": 104,
+      "mtd_spend": 3115,
+      "eom_spend": 3268,
       "cac": 17.74,
       "cac_target": 50,
+      "cac_variance": -65,
       "ltv": 178,
-      "yoy_growth": -11.6,
-      "pct_of_goal": 104
+      "efficiency_status": "Below 1/3",
+      "yoy_growth": -11.6
     }
   }
 }
