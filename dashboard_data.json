@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-05T07:15:00.000000Z",
+  "last_updated": "2026-03-05T09:11:00Z",
   "report_date": "March 5, 2026",
   "day_of_month": 5,
   "days_in_month": 31,
@@ -14,7 +14,7 @@
     "mtd_premiums": 206074,
     "eom_premiums": 1277659,
     "yoy_growth": 119.2,
-    "cac_ltv_ratio": 0.04,
+    "cac_ltv_ratio": 0.0373,
     "mtd_spend": 5080,
     "eom_spend": 31496
   },
