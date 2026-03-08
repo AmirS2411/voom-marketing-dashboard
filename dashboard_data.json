@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-08T07:48:41.406279Z",
+  "last_updated": "2026-03-08T09:51:00Z",
   "report_date": "March 8, 2026",
   "day_of_month": 8,
   "days_in_month": 31,
@@ -13,7 +13,7 @@
     "cac_target": 40,
     "mtd_premiums": 335400,
     "eom_premiums": 1299675,
-    "yoy_growth": 91.4,
+    "yoy_growth": 91.43,
     "cac_ltv_ratio": 0.0549,
     "mtd_spend": 10442,
     "eom_spend": 40463
@@ -33,7 +33,7 @@
       "cac_variance": -38,
       "ltv": 315,
       "efficiency_status": "Above 1/3",
-      "yoy_growth": 81.0
+      "yoy_growth": 80.98
     },
     "drones": {
       "name": "Drones",
@@ -49,7 +49,7 @@
       "cac_variance": -47,
       "ltv": 857,
       "efficiency_status": "Above 1/3",
-      "yoy_growth": 98.7
+      "yoy_growth": 98.68
     },
     "owners": {
       "name": "Owners",
@@ -60,12 +60,12 @@
       "pct_of_goal": 89,
       "mtd_spend": 3363,
       "eom_spend": 13032,
-      "cac": 336.3,
+      "cac": 336.30,
       "cac_target": 350,
       "cac_variance": -4,
       "ltv": 1500,
       "efficiency_status": "Above 1/3",
-      "yoy_growth": 105.3
+      "yoy_growth": 105.26
     },
     "motorcycles": {
       "name": "Motorcycles",
