@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-07T07:07:38.938702Z",
+  "last_updated": "2026-04-07T07:13:17.925176Z",
   "report_date": "April 7, 2026",
   "day_of_month": 7,
   "days_in_month": 30,
@@ -10,11 +10,11 @@
     "goal": 1405,
     "pct_of_goal": 127,
     "blended_cac": 26.93,
-    "cac_target": 50.28,
+    "cac_target": 40,
     "mtd_premiums": 286288,
     "eom_premiums": 1431440,
     "yoy_growth": 112.5,
-    "cac_ltv_ratio": 10.58,
+    "cac_ltv_ratio": 0.06,
     "mtd_spend": 9613,
     "eom_spend": 48065
   },
