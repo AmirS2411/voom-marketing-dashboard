@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-04-08T10:04:00Z",
-  "report_date": "April 8, 2026",
-  "day_of_month": 8,
+  "last_updated": "2026-04-09T10:09:55Z",
+  "report_date": "April 9, 2026",
+  "day_of_month": 9,
   "days_in_month": 30,
   "portfolio": {
     "mtd_binds": 421,
@@ -10,13 +10,13 @@
     "goal": 1405,
     "pct_of_goal": 128,
     "blended_cac": 27.12,
-    "cac_target": 47.75,
-    "mtd_premiums": 341527,
-    "eom_premiums": 1463687,
+    "cac_target": 48,
+    "mtd_premiums": 381527,
+    "eom_premiums": 1462830,
     "yoy_growth": 114.8,
-    "cac_ltv_ratio": 0.0547,
+    "cac_ltv_ratio": 0.0566,
     "mtd_spend": 11427,
-    "eom_spend": 48973
+    "eom_spend": 48972
   },
   "products": {
     "renters": {
@@ -27,7 +27,7 @@
       "goal": 652,
       "pct_of_goal": 115,
       "mtd_spend": 3556,
-      "eom_spend": 15223,
+      "eom_spend": 15240,
       "cac": 20.32,
       "cac_target": 35,
       "cac_variance": -42,
@@ -43,8 +43,8 @@
       "goal": 402,
       "pct_of_goal": 137,
       "mtd_spend": 2877,
-      "eom_spend": 12330,
-      "cac": 22.47,
+      "eom_spend": 12329,
+      "cac": 22.48,
       "cac_target": 35,
       "cac_variance": -36,
       "ltv": 857,
